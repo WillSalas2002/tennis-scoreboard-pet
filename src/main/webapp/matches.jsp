@@ -59,11 +59,72 @@
         </table>
 
         <div class="pagination">
-            <a class="prev" href="#"> < </a>
-            <a class="num-page current" href="#">1</a>
-            <a class="num-page" href="#">2</a>
-            <a class="num-page" href="#">3</a>
-            <a class="next" href="#"> > </a>
+            <c:set var="currentPage" value="${param.page != null ? param.page : 1}"/>
+
+            <form class="prev" method="GET" action="${pageContext.request.contextPath}/matches">
+                <c:choose>
+                    <c:when test="${currentPage == 1}">
+                        <input type="submit" value="&lt;&lt;" disabled/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${filterByName != null}">
+                            <input type="hidden" name="filterByName" value="${filterByName}"/>
+                        </c:if>
+                        <input type="hidden" name="page" value="1"/>
+                        <input style="background-color: transparent; border: none; outline: none;" type="submit" value="&lt;&lt;"/>
+                    </c:otherwise>
+                </c:choose>
+            </form>
+
+            <form class="prev" method="GET" action="${pageContext.request.contextPath}/matches">
+                <c:choose>
+                    <c:when test="${currentPage == 1}">
+                        <input type="hidden" name="page" value="1"/>
+                        <input type="submit" value="&lt;" disabled/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${filterByName != null}">
+                            <input type="hidden" name="filterByName" value="${filterByName}"/>
+                        </c:if>
+                        <input type="hidden" name="page" value="${currentPage - 1}"/>
+                        <input style="background-color: transparent; border: none; outline: none;" type="submit" value="&lt;"/>
+                    </c:otherwise>
+                </c:choose>
+            </form>
+
+            <form class="num-page current">
+                <input style="background-color: transparent; border: none; outline: none;" type="submit" value="${currentPage}"/>
+            </form>
+
+            <form class="next" method="GET" action="${pageContext.request.contextPath}/matches">
+                <c:choose>
+                    <c:when test="${currentPage == pageCount}">
+                        <input type="submit" value="&gt;" disabled/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${filterByName != null}">
+                            <input type="hidden" name="filterByName" value="${filterByName}"/>
+                        </c:if>
+                        <input type="hidden" name="page" value="${currentPage + 1}"/>
+                        <input style="background-color: transparent; border: none; outline: none;" type="submit" value="&gt;"/>
+                    </c:otherwise>
+                </c:choose>
+            </form>
+
+            <form class="next" method="GET" action="${pageContext.request.contextPath}/matches">
+                <c:choose>
+                    <c:when test="${currentPage == pageCount}">
+                        <input type="submit" value="&gt;&gt;" disabled/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:if test="${filterByName != null}">
+                            <input type="hidden" name="filterByName" value="${filterByName}"/>
+                        </c:if>
+                        <input type="hidden" name="page" value="${pageCount}"/>
+                        <input style="background-color: transparent; border: none; outline: none;" type="submit" value="&gt;&gt;"/>
+                    </c:otherwise>
+                </c:choose>
+            </form>
         </div>
     </div>
 </main>

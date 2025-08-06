@@ -487,10 +487,6 @@ footer {
     color: #000;
 }
 
-.next {
-    margin-left: 20px;
-}
-
 .pagination {
     text-align: center;
     display: flex;
@@ -500,6 +496,7 @@ footer {
 
 .num-page {
     margin-left: 20px;
+    margin-right: 20px;
     text-decoration: none;
     color: black;
 }

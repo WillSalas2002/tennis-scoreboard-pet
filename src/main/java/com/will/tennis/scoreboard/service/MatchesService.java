@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MatchesService {
 
-    List<MatchDto> findAll();
+    List<MatchDto> findAll(String page);
 }

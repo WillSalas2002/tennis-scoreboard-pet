@@ -17,8 +17,14 @@ public class MatchesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<MatchDto> all = MATCHES_SERVICE.findAll();
+        String page = req.getParameter("page");
+//        String name = req.getParameter("name");
+        List<MatchDto> all = MATCHES_SERVICE.findAll(page);
+        long totalPageCount = MATCHES_SERVICE.getTotalPageCount();
+
         req.setAttribute("matches", all);
+        req.setAttribute("pageCount", totalPageCount);
+
         req.getRequestDispatcher("matches.jsp").forward(req, resp);
     }
 }

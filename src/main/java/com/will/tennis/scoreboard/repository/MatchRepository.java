@@ -7,4 +7,8 @@ import java.util.List;
 public interface MatchRepository {
 
     List<Match> findAll();
+
+    List<Match> findAll(int limit, int offset);
+
+    long getMatchQuantity();
 }
