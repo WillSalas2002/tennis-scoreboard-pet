@@ -35,9 +35,19 @@
     <div class="container">
         <h1>Matches</h1>
         <div class="input-container">
-            <input class="input-filter" placeholder="Filter by name" type="text" />
+                <form method="GET" action="${pageContext.request.contextPath}/matches">
+                    <c:choose>
+                        <c:when test="${filterByName != null}">
+                            <input class="input-filter" type="text" name="filterByName" value="${filterByName}" />
+                        </c:when>
+                        <c:otherwise>
+                            <input class="input-filter" type="text" name="filterByName" placeholder="Filter by name" />
+                        </c:otherwise>
+                    </c:choose>
+                    <input type="submit" value="Search"/>
+                </form>
             <div>
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/matches">
                     <button class="btn-filter">Reset Filter</button>
                 </a>
             </div>

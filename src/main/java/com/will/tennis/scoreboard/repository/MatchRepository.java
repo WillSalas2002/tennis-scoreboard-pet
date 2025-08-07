@@ -10,5 +10,9 @@ public interface MatchRepository {
 
     List<Match> findAll(int limit, int offset);
 
+    List<Match> findByName(String name);
+
     long getMatchQuantity();
+
+    long getMatchQuantity(String name);
 }
