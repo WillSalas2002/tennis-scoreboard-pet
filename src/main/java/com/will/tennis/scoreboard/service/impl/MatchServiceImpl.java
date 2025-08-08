@@ -9,8 +9,9 @@ import com.will.tennis.scoreboard.service.MatchService;
 
 import java.util.List;
 
+import static com.will.tennis.scoreboard.Constants.RECORDS_PER_PAGE;
+
 public class MatchServiceImpl implements MatchService {
-    private static final int RECORDS_PER_PAGE = 5;
 
     private static final MatchMapper matchMapper = MatchMapper.INSTANCE;
     public static final String NUMBER_PATTERN = "^\\d$";
@@ -18,18 +19,18 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public List<MatchDto> findAll(String name, String pageStr) {
+        List<Match> matches;
 
-        if (name != null) {
-            return matchMapper.toDtoList(matchesRepository.findByName(name));
-        }
-
-        if (isValid(pageStr)) {
+        if (pageStr != null) {
             int page = Integer.parseInt(pageStr);
             int offset = (page - 1) * RECORDS_PER_PAGE;
-            List<Match> matches = matchesRepository.findAll(RECORDS_PER_PAGE, offset);
-            return matchMapper.toDtoList(matches);
+            matches = matchesRepository.findAll(offset, name);
+        } else if (name != null) {
+            matches = matchesRepository.findByName(name);
+        } else {
+            matches = matchesRepository.findAll();
         }
-        List<Match> matches = matchesRepository.findAll();
+
         return matchMapper.toDtoList(matches);
     }
 

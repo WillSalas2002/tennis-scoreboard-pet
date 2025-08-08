@@ -21,10 +21,10 @@ public class MatchServlet extends HttpServlet {
         String page = req.getParameter("page");
         String name = req.getParameter("filterByName");
 
-        List<MatchDto> all = MATCH_SERVICE.findAll(name, page);
+        List<MatchDto> matches = MATCH_SERVICE.findAll(name, page);
         long totalPageCount = name == null ? MATCH_SERVICE.getTotalPageCount() : MATCH_SERVICE.getTotalPageCount(name);
 
-        req.setAttribute("matches", all);
+        req.setAttribute("matches", matches);
         req.setAttribute("pageCount", totalPageCount);
 
         req.getRequestDispatcher("matches.jsp").forward(req, resp);

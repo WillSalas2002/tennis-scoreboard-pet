@@ -8,7 +8,7 @@ public interface MatchRepository {
 
     List<Match> findAll();
 
-    List<Match> findAll(int limit, int offset);
+    List<Match> findAll(int offset, String name);
 
     List<Match> findByName(String name);
 

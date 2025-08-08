@@ -35,6 +35,7 @@
     <div class="container">
         <h1>Matches</h1>
         <div class="input-container">
+            <c:set var="filterByName" value="${param.filterByName}"/>
                 <form method="GET" action="${pageContext.request.contextPath}/matches">
                     <c:choose>
                         <c:when test="${filterByName != null}">
@@ -70,6 +71,7 @@
 
         <div class="pagination">
             <c:set var="currentPage" value="${param.page != null ? param.page : 1}"/>
+            <c:set var="filterByName" value="${param.filterByName}"/>
 
             <form class="prev" method="GET" action="${pageContext.request.contextPath}/matches">
                 <c:choose>
