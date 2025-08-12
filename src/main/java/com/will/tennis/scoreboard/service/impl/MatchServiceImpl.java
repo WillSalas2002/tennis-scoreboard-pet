@@ -58,6 +58,11 @@ public class MatchServiceImpl implements MatchService {
         return matchStorage.saveMatch(matchScoreDtos);
     }
 
+    @Override
+    public List<MatchScoreDto> getMatchScoreDtos(UUID matchId) {
+        return matchStorage.getMatchScoreDtos(matchId);
+    }
+
     private static long calculatePageCount(long matchQuantity) {
         return (matchQuantity % RECORDS_PER_PAGE == 0) ?
                 matchQuantity / RECORDS_PER_PAGE : (matchQuantity / RECORDS_PER_PAGE) + 1L;
