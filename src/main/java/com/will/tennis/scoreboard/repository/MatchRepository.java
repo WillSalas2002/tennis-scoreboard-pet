@@ -15,4 +15,6 @@ public interface MatchRepository {
     long getMatchQuantity();
 
     long getMatchQuantity(String name);
+
+    void save(Match match);
 }

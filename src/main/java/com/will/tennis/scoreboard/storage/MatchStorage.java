@@ -14,17 +14,17 @@ import java.util.UUID;
 public class MatchStorage {
     @Getter
     private static final MatchStorage INSTANCE = new MatchStorage();
-    private static final Map<UUID, List<MatchScoreDto>> storage = new HashMap<>();
+    private static final Map<UUID, MatchScoreDto> storage = new HashMap<>();
 
-    public List<MatchScoreDto> getMatchScoreDtos(UUID matchId) {
-        List<MatchScoreDto> matchScoreDtos = storage.get(matchId);
+    public synchronized MatchScoreDto getMatchScoreDtos(UUID matchId) {
+        MatchScoreDto matchScoreDtos = storage.get(matchId);
         if (matchScoreDtos == null) {
             throw new IllegalStateException();
         }
         return matchScoreDtos;
     }
 
-    public UUID saveMatch(List<MatchScoreDto> matchScoreDtos) {
+    public synchronized UUID saveMatch(MatchScoreDto matchScoreDtos) {
         UUID matchId = UUID.randomUUID();
         storage.put(matchId, matchScoreDtos);
         return matchId;

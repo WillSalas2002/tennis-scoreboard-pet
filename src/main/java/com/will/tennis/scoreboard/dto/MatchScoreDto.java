@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class MatchScoreDto {
-    private String name;
-    private String points;
-    private int games;
-    private int sets;
+    private List<MatchScoreModel> matchScoreModels;
+    private boolean isTieBreak;
 }

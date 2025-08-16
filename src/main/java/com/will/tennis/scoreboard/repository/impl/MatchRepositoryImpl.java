@@ -60,6 +60,14 @@ public class MatchRepositoryImpl implements MatchRepository {
     }
 
     @Override
+    public void save(Match match) {
+        Session session = SESSION_FACTORY.getCurrentSession();
+        session.beginTransaction();
+        session.persist(match);
+        session.getTransaction().commit();
+    }
+
+    @Override
     public List<Match> findAll(int offset, String name) {
         Session session = SESSION_FACTORY.getCurrentSession();
         session.beginTransaction();
