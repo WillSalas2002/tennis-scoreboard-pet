@@ -2,19 +2,19 @@ package com.will.tennis.scoreboard.service.game;
 
 import lombok.Getter;
 
-import java.util.Arrays;
-
 @Getter
 public enum Point {
     ZERO("00"),
     FIFTEEN("15"),
     THIRTY("30"),
     FORTY("40"),
-    ADVANTAGE("AD");
+    ADVANTAGE("AD"),
+    AD_WIN("WIN");
 
-    private final String numericPoint;
+    @Getter
+    private final String label;
     Point(String point) {
-        this.numericPoint = point;
+        this.label = point;
     }
 
 //    public Point fromString(String numericPoint) {
@@ -25,10 +25,6 @@ public enum Point {
 //    }
 
     public Point next() {
-        int order = this.ordinal();
-        if (order == 4) {
-            return ZERO;
-        }
-        return Point.values()[order + 1];
+        return Point.values()[this.ordinal() + 1];
     }
 }

@@ -21,15 +21,13 @@ public class FinishedMatchPersistenceServiceImpl implements FinishedMatchPersist
     @Override
     public void saveMatch(String matchId) {
         MatchScoreDto matchScoreDto = ongoingMatchService.getMatchScoreDto(UUID.fromString(matchId));
-        MatchScoreModel matchScoreModel1 = matchScoreDto.getMatchScoreModels().get(0);
-        MatchScoreModel matchScoreModel2 = matchScoreDto.getMatchScoreModels().get(1);
 
-        String player1Name = matchScoreModel1.getName();
-        String player2Name = matchScoreModel2.getName();
+        String player1Name = matchScoreDto.getPlayer1();
+        String player2Name = matchScoreDto.getPlayer2();
 
         Player player1 = playerRepository.findPlayerByName(player1Name).get();
         Player player2 = playerRepository.findPlayerByName(player2Name).get();
-        Player winner = matchScoreModel1.getGames() == 2 ? player1 : player2;
+        Player winner = matchScoreDto.getPlayer1Sets() == 2 ? player1 : player2;
 
         Match match = new Match(player1, player2, winner);
         matchRepository.save(match);

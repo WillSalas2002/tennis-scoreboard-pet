@@ -49,25 +49,25 @@
                 </thead>
                 <tbody>
                 <tr class="player1">
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[0].name}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[0].sets}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[0].games}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[0].points}</td>
+                    <td class="table-text">${matchScoreDto.player1}</td>
+                    <td class="table-text">${matchScoreDto.player1Sets}</td>
+                    <td class="table-text">${matchScoreDto.player1Games}</td>
+                    <td class="table-text">${matchScoreDto.player1Points}</td>
                     <td class="table-text">
                         <form method="POST" action="${pageContext.request.contextPath}/match-score?matchId=${param.matchId}">
-                            <input name="scoredPlayer" type="hidden" value="${matchScoreDto.getMatchScoreModels()[0].name}"/>
+                            <input name="scoredPlayer" type="hidden" value="${matchScoreDto.player1}"/>
                             <input class="score-btn" type="Submit" value="Score"/>
                         </form>
                     </td>
                 </tr>
                 <tr class="player2">
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[1].name}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[1].sets}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[1].games}</td>
-                    <td class="table-text">${matchScoreDto.getMatchScoreModels()[1].points}</td>
+                    <td class="table-text">${matchScoreDto.player2}</td>
+                    <td class="table-text">${matchScoreDto.player2Sets}</td>
+                    <td class="table-text">${matchScoreDto.player2Games}</td>
+                    <td class="table-text">${matchScoreDto.player2Points}</td>
                     <td class="table-text">
                         <form method="POST" action="${pageContext.request.contextPath}/match-score?matchId=${param.matchId}">
-                            <input name="scoredPlayer" type="hidden" value="${matchScoreDto.getMatchScoreModels()[1].name}"/>
+                            <input name="scoredPlayer" type="hidden" value="${matchScoreDto.player2}"/>
                             <input class="score-btn" type="Submit" value="Score"/>
                         </form>
                     </td>
