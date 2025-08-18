@@ -1,17 +1,11 @@
 package com.will.tennis.scoreboard.service.game;
 
-import lombok.Getter;
-
 import static com.will.tennis.scoreboard.service.game.Point.ADVANTAGE;
 import static com.will.tennis.scoreboard.service.game.Point.FORTY;
 
-public class GameScore {
+public class GameScore extends AbstractGameScore {
     private Point player1Points = Point.ZERO;
     private Point player2Points = Point.ZERO;
-    @Getter
-    private boolean finished = false;
-    @Getter
-    private String winner;
 
     public void pointWonBy(String player, String player1, String player2) {
         if (finished) return;

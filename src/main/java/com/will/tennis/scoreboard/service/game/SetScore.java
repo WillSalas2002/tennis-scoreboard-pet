@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetScore {
-    private final List<GameScore> games = new ArrayList<>();
+    private final List<AbstractGameScore> games = new ArrayList<>();
     private int player1Games = 0;
     private int player2Games = 0;
     @Getter
     private boolean finished = false;
+    private boolean tieBreak = false;
     @Getter
     private String winner;
 
@@ -21,7 +22,7 @@ public class SetScore {
     public void pointWonBy(String player, String p1, String p2) {
         if (finished) return;
 
-        GameScore currentGame = getCurrentGame();
+        AbstractGameScore currentGame = getCurrentGame();
         currentGame.pointWonBy(player, p1, p2);
 
         if (currentGame.isFinished()) {
@@ -32,22 +33,36 @@ public class SetScore {
             }
             checkSetOver(p1, p2);
             if (!finished) {
-                games.add(new GameScore());
+                if (tieBreak) {
+                    games.add(new TieBreakScore());
+                } else {
+                    games.add(new GameScore());
+                }
             }
         }
     }
 
     private void checkSetOver(String p1, String p2) {
-        if (player1Games >= 6 && player1Games - player2Games >= 2) {
+        if (player1Games == 6 && player2Games == 6) {
+            tieBreak = true;
+        } else if (player1Games == 7 && player2Games <= 6) {
             finished = true;
             winner = p1;
-        } else if (player2Games >= 6 && player2Games - player1Games >= 2) {
+            tieBreak = false;
+        } else if (player2Games == 7 && player1Games <= 6) {
+            finished = true;
+            winner = p2;
+            tieBreak = false;
+        } else if (player1Games == 6 && player1Games - player2Games >= 2) {
+            finished = true;
+            winner = p1;
+        } else if (player2Games == 6 && player2Games - player1Games >= 2) {
             finished = true;
             winner = p2;
         }
     }
 
-    public GameScore getCurrentGame() {
+    public AbstractGameScore getCurrentGame() {
         return games.getLast();
     }
 

@@ -17,6 +17,8 @@ public class MatchScore {
     @Getter
     private boolean finished = false;
     @Getter
+    private boolean isTieBreak = false;
+    @Getter
     private String winner;
 
     public MatchScore() {
@@ -61,7 +63,7 @@ public class MatchScore {
         return sets.getLast();
     }
 
-    public GameScore getCurrenGameScore() {
+    public AbstractGameScore getCurrentGameScore() {
         return sets.getLast().getCurrentGame();
     }
 
