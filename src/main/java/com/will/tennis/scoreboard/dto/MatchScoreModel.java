@@ -18,7 +18,7 @@ public class MatchScoreModel {
     private int player2Sets;
     private boolean isFinished;
     @Setter(AccessLevel.NONE)
-    private TennisScoreCalculator scoreCalculator;
+    private final TennisScoreCalculator scoreCalculator;
 
     public MatchScoreModel(String player1, String player2) {
         this.player1 = player1;

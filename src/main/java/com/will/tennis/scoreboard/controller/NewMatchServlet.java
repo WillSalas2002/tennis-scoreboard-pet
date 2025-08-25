@@ -30,6 +30,7 @@ public class NewMatchServlet extends HttpServlet {
 
         playerService.createPlayersIfNotExist(player1Name, player2Name);
         UUID matchId = ongoingMatchService.createMatch(player1Name, player2Name);
-        resp.sendRedirect("http://localhost:9090/tennis-scoreboard/match-score?matchId=" + matchId);
+
+        resp.sendRedirect(req.getRequestURL().append("?").append(matchId).toString());
     }
 }
