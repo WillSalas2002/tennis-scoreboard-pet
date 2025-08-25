@@ -1,6 +1,6 @@
 package com.will.tennis.scoreboard.controller;
 
-import com.will.tennis.scoreboard.dto.MatchScoreDto;
+import com.will.tennis.scoreboard.dto.MatchScoreModel;
 import com.will.tennis.scoreboard.service.FinishedMatchPersistenceService;
 import com.will.tennis.scoreboard.service.OngoingMatchService;
 import com.will.tennis.scoreboard.service.impl.FinishedMatchPersistenceServiceImpl;
@@ -23,8 +23,8 @@ public class MatchScoreServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MatchScoreDto matchScoreDto = ongoingMatchService.getMatchScoreDto(UUID.fromString(req.getParameter("matchId")));
-        req.setAttribute("matchScoreDto", matchScoreDto);
+        MatchScoreModel matchScoreModel = ongoingMatchService.getMatchScoreDto(UUID.fromString(req.getParameter("matchId")));
+        req.setAttribute("matchScoreDto", matchScoreModel);
         req.getRequestDispatcher("match-score.jsp").forward(req, resp);
     }
 

@@ -1,6 +1,5 @@
 package com.will.tennis.scoreboard.service.impl;
 
-import com.will.tennis.scoreboard.dto.MatchScoreDto;
 import com.will.tennis.scoreboard.dto.MatchScoreModel;
 import com.will.tennis.scoreboard.model.Match;
 import com.will.tennis.scoreboard.model.Player;
@@ -20,14 +19,14 @@ public class FinishedMatchPersistenceServiceImpl implements FinishedMatchPersist
 
     @Override
     public void saveMatch(String matchId) {
-        MatchScoreDto matchScoreDto = ongoingMatchService.getMatchScoreDto(UUID.fromString(matchId));
+        MatchScoreModel matchScoreModel = ongoingMatchService.getMatchScoreDto(UUID.fromString(matchId));
 
-        String player1Name = matchScoreDto.getPlayer1();
-        String player2Name = matchScoreDto.getPlayer2();
+        String player1Name = matchScoreModel.getPlayer1();
+        String player2Name = matchScoreModel.getPlayer2();
 
         Player player1 = playerRepository.findPlayerByName(player1Name).get();
         Player player2 = playerRepository.findPlayerByName(player2Name).get();
-        Player winner = matchScoreDto.getPlayer1Sets() == 2 ? player1 : player2;
+        Player winner = matchScoreModel.getPlayer1Sets() == 2 ? player1 : player2;
 
         Match match = new Match(player1, player2, winner);
         matchRepository.save(match);

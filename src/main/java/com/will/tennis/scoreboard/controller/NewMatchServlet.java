@@ -1,9 +1,7 @@
 package com.will.tennis.scoreboard.controller;
 
-import com.will.tennis.scoreboard.service.MatchService;
 import com.will.tennis.scoreboard.service.OngoingMatchService;
 import com.will.tennis.scoreboard.service.PlayerService;
-import com.will.tennis.scoreboard.service.impl.MatchServiceImpl;
 import com.will.tennis.scoreboard.service.impl.OngoingMatchServiceImpl;
 import com.will.tennis.scoreboard.service.impl.PlayerServiceImpl;
 import jakarta.servlet.ServletException;
@@ -17,7 +15,6 @@ import java.util.UUID;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
-    private final MatchService matchService = new MatchServiceImpl();
     private final PlayerService playerService = new PlayerServiceImpl();
     private final OngoingMatchService ongoingMatchService = new OngoingMatchServiceImpl();
 

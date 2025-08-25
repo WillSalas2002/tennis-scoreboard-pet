@@ -1,9 +1,9 @@
 package com.will.tennis.scoreboard.service.game;
 
-public class TennisMatchService {
+public class TennisScoreCalculator {
     private MatchScore match;
 
-    public TennisMatchService() {
+    public TennisScoreCalculator() {
         this.match = new MatchScore();
     }
 

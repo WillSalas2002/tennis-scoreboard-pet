@@ -1,6 +1,6 @@
 package com.will.tennis.scoreboard.service.impl;
 
-import com.will.tennis.scoreboard.dto.MatchScoreDto;
+import com.will.tennis.scoreboard.dto.MatchScoreModel;
 import com.will.tennis.scoreboard.service.OngoingMatchService;
 import com.will.tennis.scoreboard.storage.MatchStorage;
 
@@ -11,12 +11,12 @@ public class OngoingMatchServiceImpl implements OngoingMatchService {
 
     @Override
     public UUID createMatch(String player1Name, String player2Name) {
-        MatchScoreDto matchScoreDto = new MatchScoreDto(player1Name, player2Name);
-        return matchStorage.saveMatch(matchScoreDto);
+        MatchScoreModel matchScoreModel = new MatchScoreModel(player1Name, player2Name);
+        return matchStorage.saveMatch(matchScoreModel);
     }
 
     @Override
-    public MatchScoreDto getMatchScoreDto(UUID matchId) {
+    public MatchScoreModel getMatchScoreDto(UUID matchId) {
         return matchStorage.getMatchScoreDtos(matchId);
     }
 }
