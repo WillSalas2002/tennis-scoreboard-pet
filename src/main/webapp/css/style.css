@@ -205,17 +205,6 @@ footer {
     cursor: pointer;
 }
 
-.btn-filter {
-    width: 280px;
-    line-height: 45px;
-    margin-left: 20px;
-    border-radius: 18px;
-    border: none;
-    background-color: #42a7f5;
-    color: #fff;
-    cursor: pointer;
-}
-
 /* Current match */
 
 .current-match-image {
@@ -424,6 +413,18 @@ footer {
 
 .form-matches {
     width: 100%;
+    display: flex;
+}
+
+.btn-input {
+    width: 280px;
+    line-height: 45px;
+    margin-left: 20px;
+    border-radius: 18px;
+    border: none;
+    background-color: #42a7f5;
+    color: #fff;
+    cursor: pointer;
 }
 
 .input-container {

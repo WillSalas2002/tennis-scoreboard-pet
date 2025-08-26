@@ -36,22 +36,20 @@
         <h1>Matches</h1>
         <div class="input-container">
             <c:set var="filterByName" value="${param.filterByName}"/>
-                <form method="GET" action="${pageContext.request.contextPath}/matches">
-                    <c:choose>
-                        <c:when test="${filterByName != null}">
-                            <input class="input-filter" type="text" name="filterByName" value="${filterByName}" />
-                        </c:when>
-                        <c:otherwise>
-                            <input class="input-filter" type="text" name="filterByName" placeholder="Filter by name" />
-                        </c:otherwise>
-                    </c:choose>
-                    <input type="submit" value="Search"/>
-                </form>
-            <div>
-                <a href="${pageContext.request.contextPath}/matches">
-                    <button class="btn-filter">Reset Filter</button>
-                </a>
-            </div>
+            <form class="form-matches" method="GET" action="${pageContext.request.contextPath}/matches">
+                <c:choose>
+                    <c:when test="${filterByName != null}">
+                        <input class="input-filter" type="text" name="filterByName" value="${filterByName}" />
+                    </c:when>
+                    <c:otherwise>
+                        <input class="input-filter" type="text" name="filterByName" placeholder="Filter by name" />
+                    </c:otherwise>
+                </c:choose>
+                <input class="btn-input" type="submit" value="Search"/>
+            </form>
+            <a href="${pageContext.request.contextPath}/matches">
+                <button class="btn-input reset-btn">Reset Filter</button>
+            </a>
         </div>
 
         <table class="table-matches">
