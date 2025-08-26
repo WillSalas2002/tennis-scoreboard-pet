@@ -35,6 +35,8 @@ public class MatchScoreServlet extends HttpServlet {
         boolean isGameFinished = calculationService.updateScore(matchId, scoredPlayerName);
         if (isGameFinished) {
             persistenceService.saveMatch(matchId);
+            resp.sendRedirect("matches");
+            return;
         }
         doGet(req, resp);
     }

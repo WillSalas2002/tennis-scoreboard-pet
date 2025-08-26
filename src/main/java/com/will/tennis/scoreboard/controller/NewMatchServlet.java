@@ -31,6 +31,6 @@ public class NewMatchServlet extends HttpServlet {
         playerService.createPlayersIfNotExist(player1Name, player2Name);
         UUID matchId = ongoingMatchService.createMatch(player1Name, player2Name);
 
-        resp.sendRedirect(req.getRequestURL().append("?").append(matchId).toString());
+        resp.sendRedirect("match-score?matchId=" + matchId);
     }
 }
