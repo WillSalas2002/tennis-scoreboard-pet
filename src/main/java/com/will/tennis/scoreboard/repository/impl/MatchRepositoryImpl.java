@@ -6,7 +6,7 @@ import com.will.tennis.scoreboard.repository.MatchRepository;
 
 import java.util.List;
 
-import static com.will.tennis.scoreboard.Constants.RECORDS_PER_PAGE;
+import static com.will.tennis.scoreboard.util.Constants.RECORDS_PER_PAGE;
 
 public class MatchRepositoryImpl extends AbstractRepository implements MatchRepository {
 

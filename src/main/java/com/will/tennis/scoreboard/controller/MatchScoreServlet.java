@@ -3,8 +3,8 @@ package com.will.tennis.scoreboard.controller;
 import com.will.tennis.scoreboard.dto.MatchScoreModel;
 import com.will.tennis.scoreboard.service.FinishedMatchPersistenceService;
 import com.will.tennis.scoreboard.service.OngoingMatchService;
+import com.will.tennis.scoreboard.service.calculator.MatchScoreCalculationService;
 import com.will.tennis.scoreboard.service.impl.FinishedMatchPersistenceServiceImpl;
-import com.will.tennis.scoreboard.service.impl.MatchScoreCalculationService;
 import com.will.tennis.scoreboard.service.impl.OngoingMatchServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import static com.will.tennis.scoreboard.util.Constants.MATCHES_SCORE_JSP;
 
 @WebServlet("/match-score")
 public class MatchScoreServlet extends HttpServlet {
@@ -25,7 +27,7 @@ public class MatchScoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         MatchScoreModel matchScoreModel = ongoingMatchService.getMatchScoreDto(UUID.fromString(req.getParameter("matchId")));
         req.setAttribute("matchScoreDto", matchScoreModel);
-        req.getRequestDispatcher("match-score.jsp").forward(req, resp);
+        req.getRequestDispatcher(MATCHES_SCORE_JSP).forward(req, resp);
     }
 
     @Override

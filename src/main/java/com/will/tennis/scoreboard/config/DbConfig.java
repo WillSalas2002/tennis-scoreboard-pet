@@ -18,6 +18,7 @@ public class DbConfig {
     public static synchronized SessionFactory getSessionFactory() {
         return sessionFactory == null ? createSessionFactory() : sessionFactory;
     }
+
     private SessionFactory createSessionFactory() {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
+import static com.will.tennis.scoreboard.util.Constants.MATCH_SCORE_REDIRECTION_URL;
+import static com.will.tennis.scoreboard.util.Constants.NEW_MATCH_JSP;
+
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
     private final PlayerService playerService = new PlayerServiceImpl();
@@ -20,7 +23,7 @@ public class NewMatchServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("new-match.jsp").forward(req, resp);
+        req.getRequestDispatcher(NEW_MATCH_JSP).forward(req, resp);
     }
 
     @Override
@@ -31,6 +34,6 @@ public class NewMatchServlet extends HttpServlet {
         playerService.createPlayersIfNotExist(player1Name, player2Name);
         UUID matchId = ongoingMatchService.createMatch(player1Name, player2Name);
 
-        resp.sendRedirect("match-score?matchId=" + matchId);
+        resp.sendRedirect(MATCH_SCORE_REDIRECTION_URL + matchId);
     }
 }

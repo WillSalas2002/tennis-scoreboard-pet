@@ -1,10 +1,14 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
 public class TennisScoreCalculator {
-    private MatchScore match;
+    private final MatchScore match;
 
     public TennisScoreCalculator() {
         this.match = new MatchScore();
+    }
+
+    public TennisScoreCalculator(int maxSets) {
+        this.match = new MatchScore(maxSets);
     }
 
     public void pointWonBy(String player) {

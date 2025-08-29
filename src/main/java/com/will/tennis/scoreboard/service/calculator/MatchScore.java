@@ -1,4 +1,4 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
 import lombok.Getter;
 
@@ -13,15 +13,18 @@ public class MatchScore {
     private int player1Sets = 0;
     @Getter
     private int player2Sets = 0;
-    private final int MAX_SETS = 3;
+    private int maxSets = 3;
     @Getter
     private boolean finished = false;
-    @Getter
-    private boolean isTieBreak = false;
     @Getter
     private String winner;
 
     public MatchScore() {
+        sets.add(new SetScore());
+    }
+
+    public MatchScore(int maxSets) {
+        this.maxSets = maxSets;
         sets.add(new SetScore());
     }
 
@@ -45,10 +48,11 @@ public class MatchScore {
     }
 
     private void checkMatchOver() {
-        if (player1Sets == 2) {
+        int matchOverCondition = maxSets / 2 + 1;
+        if (player1Sets == matchOverCondition) {
             finished = true;
             winner = player1;
-        } else if (player2Sets == 2) {
+        } else if (player2Sets == matchOverCondition) {
             finished = true;
             winner = player2;
         }

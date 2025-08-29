@@ -1,7 +1,7 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
-import static com.will.tennis.scoreboard.service.game.Point.ADVANTAGE;
-import static com.will.tennis.scoreboard.service.game.Point.FORTY;
+import static com.will.tennis.scoreboard.service.calculator.Point.ADVANTAGE;
+import static com.will.tennis.scoreboard.service.calculator.Point.FORTY;
 
 public class GameScore extends AbstractGameScore {
     private Point player1Points = Point.ZERO;
@@ -21,7 +21,7 @@ public class GameScore extends AbstractGameScore {
     }
 
     private void checkGameOver(String player1, String player2) {
-         if (player1Points.ordinal() >= 4 && player1Points.ordinal() - player2Points.ordinal() >= 2) {
+        if (player1Points.ordinal() >= 4 && player1Points.ordinal() - player2Points.ordinal() >= 2) {
             finished = true;
             winner = player1;
         } else if (player2Points.ordinal() >= 4 && player2Points.ordinal() - player1Points.ordinal() >= 2) {

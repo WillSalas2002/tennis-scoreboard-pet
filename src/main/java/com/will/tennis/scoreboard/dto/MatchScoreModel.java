@@ -1,7 +1,7 @@
 package com.will.tennis.scoreboard.dto;
 
-import com.will.tennis.scoreboard.service.game.Point;
-import com.will.tennis.scoreboard.service.game.TennisScoreCalculator;
+import com.will.tennis.scoreboard.service.calculator.Point;
+import com.will.tennis.scoreboard.service.calculator.TennisScoreCalculator;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

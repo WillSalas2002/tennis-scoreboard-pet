@@ -1,8 +1,8 @@
-package com.will.tennis.scoreboard.service.impl;
+package com.will.tennis.scoreboard.service.calculator;
 
 import com.will.tennis.scoreboard.dto.MatchScoreModel;
 import com.will.tennis.scoreboard.service.OngoingMatchService;
-import com.will.tennis.scoreboard.service.game.TennisScoreCalculator;
+import com.will.tennis.scoreboard.service.impl.OngoingMatchServiceImpl;
 
 import java.util.UUID;
 

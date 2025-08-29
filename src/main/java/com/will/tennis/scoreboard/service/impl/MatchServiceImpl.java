@@ -9,7 +9,7 @@ import com.will.tennis.scoreboard.service.MatchService;
 
 import java.util.List;
 
-import static com.will.tennis.scoreboard.Constants.RECORDS_PER_PAGE;
+import static com.will.tennis.scoreboard.util.Constants.RECORDS_PER_PAGE;
 
 public class MatchServiceImpl implements MatchService {
 
@@ -21,7 +21,7 @@ public class MatchServiceImpl implements MatchService {
     public List<MatchDto> findAll(String name, String pageStr) {
         List<Match> matches;
 
-        if (pageStr != null) {
+        if (isValid(pageStr)) {
             int page = Integer.parseInt(pageStr);
             int offset = (page - 1) * RECORDS_PER_PAGE;
             matches = matchesRepository.findAll(offset, name);

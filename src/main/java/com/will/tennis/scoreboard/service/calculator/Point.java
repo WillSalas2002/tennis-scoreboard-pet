@@ -1,4 +1,4 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
 import lombok.Getter;
 
@@ -13,6 +13,7 @@ public enum Point {
 
     @Getter
     private final String label;
+
     Point(String point) {
         this.label = point;
     }

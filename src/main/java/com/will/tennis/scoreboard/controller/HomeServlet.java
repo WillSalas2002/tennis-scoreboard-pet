@@ -8,11 +8,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static com.will.tennis.scoreboard.util.Constants.INDEX_JSP;
+
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        req.getRequestDispatcher(INDEX_JSP).forward(req, resp);
     }
 }

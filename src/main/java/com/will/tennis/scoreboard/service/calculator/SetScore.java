@@ -1,4 +1,4 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
 import lombok.Getter;
 

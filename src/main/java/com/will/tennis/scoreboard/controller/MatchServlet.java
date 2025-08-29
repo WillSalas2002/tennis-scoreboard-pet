@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.will.tennis.scoreboard.util.Constants.MATCHES_JSP;
+
 @WebServlet("/matches")
 public class MatchServlet extends HttpServlet {
     private static final MatchService MATCH_SERVICE = new MatchServiceImpl();
@@ -27,6 +29,6 @@ public class MatchServlet extends HttpServlet {
         req.setAttribute("matches", matches);
         req.setAttribute("pageCount", totalPageCount);
 
-        req.getRequestDispatcher("matches.jsp").forward(req, resp);
+        req.getRequestDispatcher(MATCHES_JSP).forward(req, resp);
     }
 }

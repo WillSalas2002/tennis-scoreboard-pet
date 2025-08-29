@@ -1,4 +1,4 @@
-package com.will.tennis.scoreboard.service.game;
+package com.will.tennis.scoreboard.service.calculator;
 
 public class TieBreakScore extends AbstractGameScore {
     private int player1TieBreakPoint = 0;
