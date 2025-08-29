@@ -1,17 +1,14 @@
 package com.will.tennis.scoreboard.repository.impl;
 
-import com.will.tennis.scoreboard.config.DbConfig;
 import com.will.tennis.scoreboard.model.Match;
+import com.will.tennis.scoreboard.repository.AbstractRepository;
 import com.will.tennis.scoreboard.repository.MatchRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
 import static com.will.tennis.scoreboard.Constants.RECORDS_PER_PAGE;
 
-public class MatchRepositoryImpl implements MatchRepository {
-    private static final SessionFactory SESSION_FACTORY = DbConfig.getSessionFactory();
+public class MatchRepositoryImpl extends AbstractRepository implements MatchRepository {
 
     private static final String BASE_SELECT_QUERY = " SELECT m FROM Match m JOIN FETCH m.player1 JOIN FETCH m.player2 JOIN FETCH m.winner";
     private static final String COUNT_QUERY = "SELECT COUNT(m.id) FROM Match m";
@@ -25,84 +22,63 @@ public class MatchRepositoryImpl implements MatchRepository {
 
     @Override
     public List<Match> findAll() {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
         String query = BASE_SELECT_QUERY + LIMIT_SUFFIX;
-        List<Match> matches = session
+        return execute(session -> session
                 .createQuery(query, Match.class)
                 .setParameter(LIMIT_PARAMETER, RECORDS_PER_PAGE)
-                .getResultList();
-        session.getTransaction().commit();
-        return matches;
+                .getResultList());
     }
 
     @Override
     public long getMatchQuantity() {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
-        Long quantity = session
+        return execute(session -> session
                 .createQuery(COUNT_QUERY, Long.class)
-                .getSingleResult();
-        session.getTransaction().commit();
-        return quantity;
+                .getSingleResult());
     }
 
     @Override
     public long getMatchQuantity(String name) {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
         String query = COUNT_QUERY + WHERE_QUERY;
-        Long quantity = session.createQuery(query, Long.class)
+        return execute(session -> session.createQuery(query, Long.class)
                 .setParameter(NAME_PARAMETER, name)
-                .getSingleResult();
-        session.getTransaction().commit();
-        return quantity;
+                .getSingleResult());
     }
 
     @Override
     public void save(Match match) {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
-        session.persist(match);
-        session.getTransaction().commit();
+        executeVoid(session -> session.persist(match));
     }
 
     @Override
     public List<Match> findAll(int offset, String name) {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
         List<Match> matches;
         if (name == null) {
             String query = BASE_SELECT_QUERY + LIMIT_SUFFIX + OFFSET_SUFFIX;
-            matches = session
+            matches = execute(session -> session
                     .createQuery(query, Match.class)
                     .setParameter(LIMIT_PARAMETER, RECORDS_PER_PAGE)
                     .setParameter(OFFSET_PARAMETER, offset)
-                    .getResultList();
+                    .getResultList());
+
         } else {
             String query = BASE_SELECT_QUERY + WHERE_QUERY + LIMIT_SUFFIX + OFFSET_SUFFIX;
-            matches = session
+            matches = execute(session -> session
                     .createQuery(query, Match.class)
                     .setParameter(LIMIT_PARAMETER, RECORDS_PER_PAGE)
                     .setParameter(OFFSET_PARAMETER, offset)
                     .setParameter(NAME_PARAMETER, name)
-                    .getResultList();
+                    .getResultList());
         }
-        session.getTransaction().commit();
         return matches;
     }
 
     @Override
     public List<Match> findByName(String name) {
-        Session session = SESSION_FACTORY.getCurrentSession();
-        session.beginTransaction();
         String query = BASE_SELECT_QUERY + WHERE_QUERY + LIMIT_SUFFIX;
-        List<Match> matches = session
+        return execute(session -> session
                 .createQuery(query, Match.class)
                 .setParameter(NAME_PARAMETER, name)
                 .setParameter(LIMIT_PARAMETER, RECORDS_PER_PAGE)
-                .getResultList();
-        session.getTransaction().commit();
-        return matches;
+                .getResultList());
     }
 }
