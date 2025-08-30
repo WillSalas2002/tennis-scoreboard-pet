@@ -37,7 +37,7 @@
             <div class="new-match-image"></div>
             <div class="form-container center">
                 <form method="post" action="#">
-                    <p style="color: red;">Sample error message</p>
+                    <p style="color: red;">${error}</p>
                     <label class="label-player" for="playerOne">Player one</label>
                     <input class="input-player" name="player1Name" placeholder="Name" type="text" required title="Enter a name">
                     <label class="label-player" for="playerTwo">Player two</label>

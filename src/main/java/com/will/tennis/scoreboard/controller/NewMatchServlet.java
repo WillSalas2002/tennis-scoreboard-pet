@@ -18,6 +18,7 @@ import static com.will.tennis.scoreboard.util.Constants.NEW_MATCH_JSP;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
+    private static final int MIN_CHARS = 3;
     private final PlayerService playerService = new PlayerServiceImpl();
     private final OngoingMatchService ongoingMatchService = new OngoingMatchServiceImpl();
 
@@ -27,13 +28,23 @@ public class NewMatchServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String player1Name = req.getParameter("player1Name");
         String player2Name = req.getParameter("player2Name");
+
+        if (validateNames(player1Name, player2Name)) {
+            req.setAttribute("error", "Player names should not be null and name size should be at least 5 characters long.");
+            req.getRequestDispatcher(NEW_MATCH_JSP).forward(req, resp);
+            return;
+        }
 
         playerService.createPlayersIfNotExist(player1Name, player2Name);
         UUID matchId = ongoingMatchService.createMatch(player1Name, player2Name);
 
         resp.sendRedirect(MATCH_SCORE_REDIRECTION_URL + matchId);
+    }
+
+    private boolean validateNames(String player1, String player2) {
+        return (player1 == null || player2 == null || player1.length() < MIN_CHARS || player2.length() < 5);
     }
 }
