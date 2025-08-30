@@ -19,6 +19,7 @@ import static com.will.tennis.scoreboard.util.Constants.NEW_MATCH_JSP;
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
     private static final int MIN_CHARS = 3;
+    private static final int MAX_CHARS = 20;
     private final PlayerService playerService = new PlayerServiceImpl();
     private final OngoingMatchService ongoingMatchService = new OngoingMatchServiceImpl();
 
@@ -33,7 +34,7 @@ public class NewMatchServlet extends HttpServlet {
         String player2Name = req.getParameter("player2Name");
 
         if (validateNames(player1Name, player2Name)) {
-            req.setAttribute("error", "Player names should not be null and name size should be at least 5 characters long.");
+            req.setAttribute("error", "Player names should not be same and name size should be min 3 and max 20.");
             req.getRequestDispatcher(NEW_MATCH_JSP).forward(req, resp);
             return;
         }
@@ -45,6 +46,9 @@ public class NewMatchServlet extends HttpServlet {
     }
 
     private boolean validateNames(String player1, String player2) {
-        return (player1 == null || player2 == null || player1.length() < MIN_CHARS || player2.length() < 5);
+        return (player1 == null || player2 == null) ||
+                (player1.length() < MIN_CHARS || player2.length() < MIN_CHARS) ||
+                (player1.length() > MAX_CHARS || player2.length() > MAX_CHARS) ||
+                player1.trim().equals(player2.trim());
     }
 }
