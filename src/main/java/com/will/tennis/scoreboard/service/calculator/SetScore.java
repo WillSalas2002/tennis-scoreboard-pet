@@ -63,7 +63,7 @@ public class SetScore {
     }
 
     public AbstractGameScore getCurrentGame() {
-        return games.getLast();
+        return games.get(games.size() - 1);
     }
 
     public int getPlayer1GameScore() {

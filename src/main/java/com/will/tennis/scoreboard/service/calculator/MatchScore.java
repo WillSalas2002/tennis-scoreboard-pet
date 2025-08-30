@@ -64,11 +64,11 @@ public class MatchScore {
     }
 
     public SetScore getCurrentSet() {
-        return sets.getLast();
+        return sets.get(sets.size() - 1);
     }
 
     public AbstractGameScore getCurrentGameScore() {
-        return sets.getLast().getCurrentGame();
+        return sets.get(sets.size() - 1).getCurrentGame();
     }
 
     public String getScore() {
