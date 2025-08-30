@@ -22,11 +22,11 @@ public class DbConfig {
     private static final String KEY_DIALECT = "hibernate.dialect";
     private static final String KEY_SHOW_SQL = "hibernate.show_sql";
     private static final String KEY_CURRENT_SESSION_CONTEXT = "hibernate.current_session_context_class";
-    private static final String KEY_CONNECTION_POOL_MIN_SIZE = "hibernate.c3p0.min_size";
-    private static final String KEY_CONNECTION_POOL_MAX_SIZE = "hibernate.c3p0.max_size";
-    private static final String KEY_CONNECTION_TIMEOUT = "hibernate.c3p0.timeout";
-    private static final String KEY_CONNECTION_MAX_STATEMENTS = "hibernate.c3p0.max_statements";
+    private static final String KEY_ISOLATION_LEVEL = "hibernate.connection.isolation";
     private static final String KEY_CONNECTION_PROVIDER_CLASS = "hibernate.connection.provider_class";
+    private static final String KEY_TIMEOUT = "hibernate.hikari.idleTimeout";
+    private static final String KEY_CONNECTION_POOL_MIN_SIZE = "hibernate.hikari.minimumIdle";
+    private static final String KEY_CONNECTION_POOL_MAX_SIZE = "hibernate.hikari.maximumPoolSize";
 
     private SessionFactory sessionFactory;
 
@@ -52,17 +52,18 @@ public class DbConfig {
         Properties settings = new Properties();
         settings.put(KEY_DRIVER_CLASS, PropertiesUtil.get(KEY_DRIVER_CLASS));
         settings.put(KEY_URL, PropertiesUtil.get(KEY_URL));
-        settings.put(KEY_USERNAME, PropertiesUtil.get(KEY_URL));
+        settings.put(KEY_USERNAME, PropertiesUtil.get(KEY_USERNAME));
         settings.put(KEY_PASSWORD, PropertiesUtil.get(KEY_PASSWORD));
         settings.put(KEY_HBM_2_DDL, PropertiesUtil.get(KEY_HBM_2_DDL));
         settings.put(KEY_DIALECT, PropertiesUtil.get(KEY_DIALECT));
         settings.put(KEY_SHOW_SQL, PropertiesUtil.get(KEY_SHOW_SQL));
         settings.put(KEY_CURRENT_SESSION_CONTEXT, PropertiesUtil.get(KEY_CURRENT_SESSION_CONTEXT));
-//        settings.put(KEY_CONNECTION_POOL_MIN_SIZE, PropertiesUtil.get(KEY_CONNECTION_POOL_MIN_SIZE));
-//        settings.put(KEY_CONNECTION_POOL_MAX_SIZE, PropertiesUtil.get(KEY_CONNECTION_POOL_MAX_SIZE));
-//        settings.put(KEY_CONNECTION_TIMEOUT, PropertiesUtil.get(KEY_CONNECTION_TIMEOUT));
-//        settings.put(KEY_CONNECTION_MAX_STATEMENTS, PropertiesUtil.get(KEY_CONNECTION_MAX_STATEMENTS));
-//        settings.put(KEY_CONNECTION_PROVIDER_CLASS, PropertiesUtil.get(KEY_CONNECTION_PROVIDER_CLASS));
+
+        settings.put(KEY_CONNECTION_PROVIDER_CLASS, PropertiesUtil.get(KEY_CONNECTION_PROVIDER_CLASS));
+        settings.put(KEY_ISOLATION_LEVEL, PropertiesUtil.get(KEY_ISOLATION_LEVEL));
+        settings.put(KEY_TIMEOUT, PropertiesUtil.get(KEY_TIMEOUT));
+        settings.put(KEY_CONNECTION_POOL_MIN_SIZE, PropertiesUtil.get(KEY_CONNECTION_POOL_MIN_SIZE));
+        settings.put(KEY_CONNECTION_POOL_MAX_SIZE, PropertiesUtil.get(KEY_CONNECTION_POOL_MAX_SIZE));
         return settings;
     }
 }
