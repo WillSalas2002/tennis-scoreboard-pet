@@ -3,12 +3,8 @@ package com.will.tennis.scoreboard.service.calculator;
 public class TennisScoreCalculator {
     private final MatchScore match;
 
-    public TennisScoreCalculator() {
-        this.match = new MatchScore();
-    }
-
-    public TennisScoreCalculator(int maxSets) {
-        this.match = new MatchScore(maxSets);
+    public TennisScoreCalculator(String player1, String player2) {
+        this.match = new MatchScore(player1, player2);
     }
 
     public void pointWonBy(String player) {
@@ -45,9 +41,5 @@ public class TennisScoreCalculator {
 
     public String getWinner() {
         return match.getWinner();
-    }
-
-    public void setPlayers(String p1, String p2) {
-        this.match.setPlayers(p1, p2);
     }
 }

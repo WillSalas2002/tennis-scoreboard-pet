@@ -25,6 +25,6 @@ public class MatchScoreModel {
         this.player2 = player2;
         player1Points = Point.ZERO.getLabel();
         player2Points = Point.ZERO.getLabel();
-        scoreCalculator = new TennisScoreCalculator();
+        scoreCalculator = new TennisScoreCalculator(player1, player2);
     }
 }

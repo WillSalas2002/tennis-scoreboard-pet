@@ -18,13 +18,6 @@ public enum Point {
         this.label = point;
     }
 
-//    public Point fromString(String numericPoint) {
-//        return Arrays.stream(values())
-//                .filter(t -> t.numericPoint.equals(numericPoint))
-//                .findFirst()
-//                .orElseThrow();
-//    }
-
     public Point next() {
         return Point.values()[this.ordinal() + 1];
     }

@@ -13,7 +13,6 @@ public class MatchScoreCalculationService {
         MatchScoreModel matchScoreModel = ongoingMatchService.getMatchScoreDto(UUID.fromString(matchId));
         TennisScoreCalculator scoreCalculator = matchScoreModel.getScoreCalculator();
 
-        scoreCalculator.setPlayers(matchScoreModel.getPlayer1(), matchScoreModel.getPlayer2());
         scoreCalculator.pointWonBy(scoredPlayerName);
 
         mapToMatchScoreDto(matchScoreModel, scoreCalculator);

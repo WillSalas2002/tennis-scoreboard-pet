@@ -6,24 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchScore {
-    private String player1;
-    private String player2;
+    private final String player1;
+    private final String player2;
     private final List<SetScore> sets = new ArrayList<>();
     @Getter
     private int player1Sets = 0;
     @Getter
     private int player2Sets = 0;
-    private int maxSets = 3;
+    private int maxSets;
     @Getter
     private boolean finished = false;
     @Getter
     private String winner;
 
-    public MatchScore() {
+    public MatchScore(String player1, String player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.maxSets = 3;
         sets.add(new SetScore());
     }
 
-    public MatchScore(int maxSets) {
+    public MatchScore(String player1, String player2, int maxSets) {
+        this.player1 = player1;
+        this.player2 = player2;
         this.maxSets = maxSets;
         sets.add(new SetScore());
     }
@@ -48,7 +53,7 @@ public class MatchScore {
     }
 
     private void checkMatchOver() {
-        int matchOverCondition = maxSets / 2 + 1;
+        int matchOverCondition = (maxSets / 2) + 1;
         if (player1Sets == matchOverCondition) {
             finished = true;
             winner = player1;
@@ -56,11 +61,6 @@ public class MatchScore {
             finished = true;
             winner = player2;
         }
-    }
-
-    public void setPlayers(String p1, String p2) {
-        this.player1 = p1;
-        this.player2 = p2;
     }
 
     public SetScore getCurrentSet() {
